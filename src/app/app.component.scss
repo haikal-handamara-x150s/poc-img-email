@@ -1,0 +1,12 @@
+:host {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto 1fr auto;
+    gap: 1rem;
+    grid-template-areas: "header header" "log tracker" "control control";
+}
+
+.header { grid-area: header; }
+.control { grid-area: control; }
+.log { grid-area: log; }
+.tracker { grid-area: tracker; }
