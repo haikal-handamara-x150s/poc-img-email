@@ -1,12 +1,41 @@
 :host {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: auto auto 1fr;
     gap: 1rem;
-    grid-template-areas: "header header" "log tracker" "control control";
+    padding: 1rem;
+    grid-template-areas: "header header" "control control" "log log";
+    width: calc(100vw - 2rem);
+    height: calc(100vh - 2rem);
+    overflow: hidden;
 }
 
 .header { grid-area: header; }
 .control { grid-area: control; }
-.log { grid-area: log; }
-.tracker { grid-area: tracker; }
+.log {
+    grid-area: log;
+
+    mat-card-content {
+        height: calc((100vh * 2 / 3) - 2rem);
+    }
+
+    mat-list {
+        height: calc(100% - .6rem);
+
+        mat-list-item:hover {
+            background-color: #eee;
+        }
+    }
+}
+.tracker { grid-area: tracker; display: none; }
+
+mat-form-field {
+    width: 100%;
+}
+.muted {
+    text-align: end;
+    opacity: .5;
+}
+.scrollable {
+    overflow-y: scroll;
+}

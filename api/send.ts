@@ -25,9 +25,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
         } else {
             const target: string = req.body.target;
             const transport = createTransport({
-                host: process.env['MAIL_HOST'],
-                port: Number(process.env['MAIL_PORT']),
-                secure: false,
+                service: 'hotmail',
                 auth: {
                     user: process.env['MAIL_USER'],
                     pass: process.env['MAIL_PASS'],
@@ -37,7 +35,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
                 from: process.env['MAIL_USER'],
                 to: target,
                 subject: 'Your QR Code awaits!',
-                html: `<p>Here's your QR code<br/>Enjoy!</p><img src="https://poc-img-email.vercel.app/api/generate?q=${Date.now().toString(36)}"/>`,
+                html: `<p>Here's your QR code<br/>Enjoy!</p><img src="https://poc-img-email.vercel.app/api/generate?q=${Date.now().toString(36)}" alt="QR Code"/>`,
             });
             res.status(202).json({
                 status: true,

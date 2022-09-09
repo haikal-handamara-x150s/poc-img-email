@@ -1,9 +1,9 @@
-<mat-card class="header">
+<mat-card class="header mat-elevation-z4">
   <mat-card-title>
     POC QR Code generator
   </mat-card-title>
 </mat-card>
-<mat-card class="control">
+<mat-card class="control mat-elevation-z4">
   <mat-card-title>
     Sender
   </mat-card-title>
@@ -16,23 +16,34 @@
         placeholder="Email address"
         [formControl]="emailAddress"
       />
+      <mat-error *ngIf="emailAddress.hasError('email')">
+        Must be a valid email address
+      </mat-error>
     </mat-form-field>
   </mat-card-content>
-  <mat-card-footer>
+  <mat-card-actions align="end">
     <button mat-raised-button (click)="sendAsync()">
       Send
     </button>
-  </mat-card-footer>
+  </mat-card-actions>
 </mat-card>
-<mat-card class="log">
+<mat-card class="log mat-elevation-z4">
   <mat-card-title>
     Log
   </mat-card-title>
   <mat-card-content>
-
+    <mat-list class="scrollable">
+      <mat-list-item *ngFor="let log of logs">
+        <mat-icon mat-list-icon>
+          rocket
+        </mat-icon>
+        <pre mat-line>{{ log.msg }}</pre>
+        <div mat-line class="muted">{{ log.ts | date:'long' }}</div>
+      </mat-list-item>
+    </mat-list>
   </mat-card-content>
 </mat-card>
-<mat-card class="tracker">
+<mat-card class="tracker mat-elevation-z4">
   <mat-card-title>
     Tracker
   </mat-card-title>
