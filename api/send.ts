@@ -32,7 +32,6 @@ export default async (req: VercelRequest, res: VercelResponse) => {
                     user: process.env['MAIL_USER'],
                     pass: process.env['MAIL_PASS'],
                 },
-                // service: 'Hotmail',
             });
             const info = await transport.sendMail({
                 from: process.env['MAIL_USER'],
